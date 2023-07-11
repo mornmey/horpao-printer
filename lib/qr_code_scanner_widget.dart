@@ -123,21 +123,26 @@ class _QRCodeScannerWidgetState extends State<QRCodeScannerWidget> {
       var posRemoveTwoCha = removeTwoCha.lastIndexOf(':');
 
       /// Result of nameOfWifi => WIFI Printer
-      String wifiName =
-          removeTwoCha.substring(posRemoveTwoCha).split(":").join();
+      String wifiName = removeTwoCha.substring(posRemoveTwoCha).split(":").join();
 
       if (result != null) {
+        await controller.pauseCamera();
+        setState(() {
+          checkConnect = true;
+        });
+
         final bool checkConnectWifi = await WiFiForIoTPlugin.connect(
           wifiName,
           password: password,
           joinOnce: true,
           security: NetworkSecurity.WPA,
         );
-        setState(() {
-          checkConnect = checkConnectWifi;
-        });
+
         if (checkConnectWifi == true) {
           _deBouncer.run(() {
+            setState(() {
+              checkConnect = false;
+            });
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -146,7 +151,12 @@ class _QRCodeScannerWidgetState extends State<QRCodeScannerWidget> {
             );
           });
         } else {
-          print("fail connect");
+          _deBouncer.run(() {
+            setState(() {
+              checkConnect = false;
+            });
+            print("fail connect");
+          });
         }
       }
     });

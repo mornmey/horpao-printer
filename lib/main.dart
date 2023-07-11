@@ -154,9 +154,9 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     setState(() {
-      nameOfWifi = wifiName!;
+      nameOfWifi = (Platform.isAndroid ? wifiName?.substring(1, wifiName.length - 1) : wifiName  ?? "")!;
       iPv4OfWifi = wifiIPv4!;
-      _connectionStatus = 'Wifi Name: $wifiName\n'
+      _connectionStatus = 'Wifi Name: $nameOfWifi\n'
           'Wifi BSSID: $wifiBSSID\n'
           'Wifi IPv4: $wifiIPv4\n'
           'Wifi IPv6: $wifiIPv6\n'

@@ -4,6 +4,10 @@
 <dict>
     <key>io.flutter.embedded_views_preview</key>
     <true/>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Application requires user’s location for better user experience.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Application requires user’s location for better user experience.</string>
     <key>NSCameraUsageDescription</key>
     <string>This app needs camera access to scan QR codes</string>
 	<key>CFBundleDevelopmentRegion</key>

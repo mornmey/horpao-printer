@@ -14,7 +14,7 @@ class _WifiListWidgetState extends State<WifiListWidget> {
   @override
   Widget build(BuildContext context) {
     String ip = "";
-    final ssid = nameOfWifi.substring(1, nameOfWifi.length - 1);
+    final ssid = nameOfWifi;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
